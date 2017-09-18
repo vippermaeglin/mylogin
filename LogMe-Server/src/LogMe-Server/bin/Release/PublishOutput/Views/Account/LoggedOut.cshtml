@@ -1,0 +1,22 @@
+﻿@model LogMe_Server.Models.AccountViewModels.LoggedOutViewModel
+
+<BR />
+<div class="page-header">
+    <h1>
+        Tchau!
+        <small>Você saiu</small>
+    </h1>
+
+    @if (Model.PostLogoutRedirectUri != null)
+    {
+        <div>
+            Clique <a href="@Model.PostLogoutRedirectUri">aqui</a> para retornar ao
+            <span>@Model.ClientName</span>.
+        </div>
+    }
+
+    @if (Model.SignOutIframeUrl != null)
+    {
+        <iframe style="display:none" width="0" height="0" class="signout" src="@Model.SignOutIframeUrl"></iframe>
+    }
+</div>

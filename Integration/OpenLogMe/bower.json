@@ -1,0 +1,26 @@
+{
+  "name": "openfb",
+  "main": "openfb.js",
+  "version": "0.5.0",
+  "homepage": "https://github.com/ccoenraets/OpenFB",
+  "authors": [
+    "Vinicius Arruda <vinicius.silva.arruda@gmail.com>"
+  ],
+  "description": "Micro-Library for LogMe integration in JavaScript apps running in the browser and in Cordova",
+  "keywords": [
+    "OpenLogMe",
+    "LogMe",
+    "Cordova",
+    "Hybrid",
+    "Graph",
+    "OAuth"
+  ],
+  "license": "LogMe",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

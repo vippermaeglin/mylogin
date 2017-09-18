@@ -1,0 +1,28 @@
+﻿@using Microsoft.AspNetCore.Authentication;
+@{
+    ViewData["Title"] = "Logme";
+}
+<h2>@ViewData["Title"]</h2>
+
+<h3>Dados do Usuário</h3>
+
+<div>
+    <a asp-action="CallApiUsingUserAccessToken">Buscar dados de formulários via API</a>
+</div>
+<div>
+    <a asp-action="CallApiUsingClientCredentials">Call API using application identity</a>
+</div>
+
+<dl>
+    @foreach (var claim in User.Claims)
+    {
+        <dt>@claim.Type</dt>
+        <dd>@claim.Value</dd>
+
+    }
+    <dt>Token de Acesso</dt>
+    <dd>@await ViewContext.HttpContext.Authentication.GetTokenAsync("access_token")</dd>
+
+    <dt>Renovar Token</dt>
+    <dd>@await ViewContext.HttpContext.Authentication.GetTokenAsync("refresh_token")</dd>
+</dl>

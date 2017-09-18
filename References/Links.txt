@@ -1,0 +1,21 @@
+IdentityServer4 Documentation
+http://docs.identityserver.io/en/dev/quickstarts/0_overview.html
+
+IdentityServer4 Samples
+https://github.com/IdentityServer/IdentityServer4.Samples
+
+Whats new
+https://blogs.msdn.microsoft.com/webdev/2016/09/19/introducing-identityserver4-for-authentication-and-access-control-in-asp-net-core/
+
+Tutorial
+http://www.asp.net/web-forms/overview/security/create-a-secure-aspnet-web-forms-app-with-user-registration-email-confirmation-and-password-reset
+
+DotNetOpenAuth 
+NuGet Manager Console: Install-Package DotNetOpenAuth
+http://dotnetopenauth.net/
+
+OpenId Connect implicit flow
+http://openid.net/specs/openid-connect-implicit-1_0.html
+
+OpenId Connect Flow Types
+https://gist.github.com/jawadatgithub/638c11f08ecc0d76b05c

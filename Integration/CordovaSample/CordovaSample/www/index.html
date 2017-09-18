@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>MyLogin Cordova</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <link rel="stylesheet" href="css/ratchet.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div class="content content-padded">
+
+        <div style="align-content:center; align-self:center; text-align:center">
+            <button class="btn btn-block2" style="border:none" onclick="login()"><img src="images/logme_logo.jpeg" style="height:70px;" /></button>
+        </div>
+        <hr />
+
+        <!--button class="btn btn-block" onclick="getInfo()">Preencher Formulários (API)</button-->
+        <p>Nome: <span id="name"></span></p>
+        <p>Sobrenome: <span id="surname"></span></p>
+        <p>CPF: <span id="cpf"></span></p>
+        <p>E-mail: <span id="email"></span></p>
+        <p>Sexo: <span id="gender"></span></p>
+        <p>Celular: <span id="cellphone"></span></p>
+        <!--img id="userPic"/-->
+        <hr />
+
+        <!--textarea id="Message" placeholder="What's on your mind?" rows="5"></textarea>
+        <button class="btn btn-block" onclick="share()">Share</button>
+        <hr/-->
+
+        <p>Sair do MyLogin (logout). Após desconectar, você precisará entrar novamente com suas credenciais MyLogin.</p>
+        <button class="btn btn-block" onclick="logout()">Logout</button>
+        <hr />
+
+        <!--button class="btn btn-block" onclick="readPermissions()">Read Permissions</button>
+
+        <p>Revoke App Permissions. After revoking permissions, you'll have to grant permissions again when logging in.</p>
+        <button class="btn btn-block" onclick="revoke()">Revoke Permissions</button-->
+
+    </div>
+
+<!--cordova.js is automatically injected by the Cordova build process-->
+<script src="scripts/cordova.js"></script>
+
+<script src="scripts/logme.js"></script>
+
+<script>
+
+     // Defaults to sessionStorage for storing the Facebook token
+    LogME.init({ appId: 'jetdev' });
+
+    //  Uncomment the line below to store the MyLogin token in localStorage instead of sessionStorage
+    //  openFB.init({appId: 'YOUR_FB_APP_ID', tokenStore: window.localStorage});
+
+    function login() {
+        LogME.login(
+                function(response) {
+                    if(response.status === 'connected') {
+                        //alert('MyLogin com sucesso! Seu id_token: ' + response.authResponse.idToken);
+                        getInfo();
+                    } else {
+                        alert('MyLogin falhou: ' + response.error);
+                    }
+                }, { scope: 'openid logme offline_access' });
+    }
+
+    function getInfo() {
+        LogME.api({
+            path: '/identity',
+            success: function (data) {
+                var strData = JSON.stringify(data);
+                console.log(strData);
+                document.getElementById("name").innerHTML = String(JSON.stringify(data).split("\"type\":\"Name\",\"value\":\"")[1]).split("\"}")[0];
+                document.getElementById("surname").innerHTML = String(JSON.stringify(data).split("\"type\":\"Surname\",\"value\":\"")[1]).split("\"}")[0];
+                document.getElementById("cpf").innerHTML = String(JSON.stringify(data).split("\"type\":\"CPF\",\"value\":\"")[1]).split("\"}")[0];
+                document.getElementById("email").innerHTML = String(JSON.stringify(data).split("\"type\":\"Email\",\"value\":\"")[1]).split("\"}")[0];
+                document.getElementById("gender").innerHTML = String(JSON.stringify(data).split("\"type\":\"Gender\",\"value\":\"")[1]).split("\"}")[0];
+                document.getElementById("cellphone").innerHTML = String(JSON.stringify(data).split("\"type\":\"CellPhone\",\"value\":\"")[1]).split("\"}")[0];
+            },
+            error: errorHandler});
+    }
+
+    function findUserInfo(obj, prop, defval) {
+        if (typeof defval == 'undefined') defval = null;
+        prop = prop.split('.');
+        for (var i = 0; i < prop.length; i++) {
+            if (typeof obj[prop[i]] == 'undefined')
+                return defval;
+            obj = obj[prop[i]];
+        }
+        return obj;
+    }
+    /*
+    function share() {
+        LogME.api({
+            method: 'POST',
+            path: '/me/feed',
+            params: {
+                message: document.getElementById('Message').value || 'Testing MyLogin APIs'
+            },
+            success: function() {
+                alert('the item was posted on Facebook');
+            },
+            error: errorHandler});
+    }
+
+    function readPermissions() {
+        LogME.api({
+            method: 'GET',
+            path: '/me/permissions',
+            success: function(result) {
+                alert(JSON.stringify(result.data));
+            },
+            error: errorHandler
+        });
+    }
+
+    function revoke() {
+        LogME.revokePermissions(
+                function() {
+                    alert('Permissions revoked');
+                },
+                errorHandler);
+    }*/
+
+    function logout() {
+        LogME.logout(
+                function() {
+                    //alert('Logout successful');
+                    document.getElementById("name").innerHTML = "";
+                    document.getElementById("surname").innerHTML = "";
+                    document.getElementById("cpf").innerHTML = "";
+                    document.getElementById("email").innerHTML = "";
+                    document.getElementById("gender").innerHTML = "";
+                    document.getElementById("cellphone").innerHTML = "";
+                },
+                errorHandler);
+    }
+
+    function errorHandler(error) {
+        alert(error.message);
+    }
+
+</script>
+</body>
+</html>

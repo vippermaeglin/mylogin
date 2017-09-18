@@ -1,0 +1,17 @@
+GMAIL
+contato.mylogin@gmail.com
+Mylogin2016!
+
+AZURE DEPLOY
+Web App Name: LogMeIn
+App Service Plan: LogMeInMePlan
+Resource Group: logme-group
+Region: Brazil South
+DB: logme
+DB Server:logme-sqlserver
+DB Username: logme	
+DB Password: codigoiam2016!
+
+OXIGENIO ACELERADORA
+user: vinicius.silva.arruda@gmail.com
+pass: Mylogin2016!
