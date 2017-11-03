@@ -1,4 +1,4 @@
-<img src="http://logme-server.azurewebsites.net/images/passo-2.jpg" alt="Self-Driving Car" width="800px">
+<img src="http://logme-server.azurewebsites.net/images/passo-2.jpg" alt="MyLogin" width="800px">
 
 # MyLogin #
 * [www.mylogin.com.br](http://logme-server.azurewebsites.net/)
